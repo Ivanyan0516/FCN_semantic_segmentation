@@ -17,10 +17,6 @@ mv VOCdevkit/VOC2012/SegmentationClass data/classes
 3. 数据预处理中并没有对image和label进行resize，是因为label是像素级别上的标注，进行resize可能  
    会变成小数。故对其进行相同位置的random crop，自定义random crop,将图片随机裁剪为256x256. 详见 `utils/transfrom.py`  
 
-1. 图像分割衡量标准，具体实现见`utils/eval.py`。  
-    参考网站：https://blog.csdn.net/majinlei121/article/details/78965435  
-             https://blog.csdn.net/u014593748/article/details/71698246  
-
 ## 2.网络结构
 
 FCN网络用于图像分割，模型搭建详见 `utils/model.py`  
@@ -65,6 +61,9 @@ FCN网络用于图像分割，模型搭建详见 `utils/model.py`
 ## 4.实验评估
 
 1. 评价指标： 计算了pixel accuracy\mean accuracy\ mean IU,\frequency weighted IU
+2. 图像分割衡量标准，具体实现见`utils/eval.py`。  
+   参考网站：https://blog.csdn.net/majinlei121/article/details/78965435  
+            https://blog.csdn.net/u014593748/article/details/71698246  
 
 2. 下列分别为做的对比实验及其指标：
 3. 结果可视化
