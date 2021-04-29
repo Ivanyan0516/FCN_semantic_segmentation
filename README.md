@@ -50,13 +50,15 @@ FCN网络用于图像分割，模型搭建详见 `utils/model.py`
 
    2.python main.py --result_path='./result_fcn32s_Adam_Cosine.txt' --model_path='./models/fcn32s_Adam_Cosine_best_model.pth' --summarywriter_dir='./fcn32s_Adam_Cosine_runs' --lr_decay_choice='Cosine' --model='fcn32' --optim='Adam'
 
-   3.python main.py --result_path='./result_fcn32s_Adam_Exp.txt' --model_path='./models/fcn32s_Adam_Exp_best_model.pth' --summarywriter_dir='./fcn32s_Adam_Exp_runs' --lr_decay_choice='Exponential' --model='fcn32' --optim='Adam'
+   3.python main.py --result_path='./result_fcn32s_SGD_Exp.txt' --model_path='./models/fcn32s_SGD_Exp_best_model.pth' --summarywriter_dir='./fcn32s_SGD_Exp_runs' --lr_decay_choice='Exponential' --model='fcn32' --optim='SGD'
 
    4.python main.py --result_path='./result_fcn32s_Adam_multistep.txt' --model_path='./models/fcn32s_Adam_multistep_best_model.pth' --summarywriter_dir='./fcn32s_Adam_Multistep_runs' --lr_decay_choice='multistep' --model='fcn32s' --optim='Adam'
 
    5.python main.py --result_path='./result_fcn16s_Adam_Cosine.txt' --model_path='./models/fcn16s_Adam_Cosine_best_model.pth' --summarywriter_dir='./fcn16s_Adam_Cosine_runs' --lr_decay_choice='Cosine' --model='fcn16s' --optim='Adam'
 
    6.python main.py --result_path='./result_fcn8s_Adam_Cosine.txt' --model_path='./models/fcn8s_Adam_Cosine_best_model.pth' --summarywriter_dir='./fcn8s_Adam_Cosine_runs' --lr_decay_choice='Cosine' --model='fcn8s' --optim='Adam'
+
+   7.python main.py --result_path='./result_fcn32s_SGD_Cos_19.txt' --model_path='./models/fcn32s_SGD_Cos_19best_model.pth' --summarywriter_dir='./fcn32s_SGD_Cos_19runs' --lr_decay_choice='Cosine' --model='fcn32' --optim='SGD'
 
 ## 4.实验评估
 
@@ -66,4 +68,19 @@ FCN网络用于图像分割，模型搭建详见 `utils/model.py`
             https://blog.csdn.net/u014593748/article/details/71698246  
 
 2. 下列分别为做的对比实验及其指标：
+
+   | model                       | pixel-acc | mean-acc | mean IU | f.w. IU |
+   | --------------------------- | --------- | -------- | ------- | ------- |
+   | vgg16+Adam+Cos+fcn32s       | 0.7792    | 0.2880   | 0.2175  | 0.5615  |
+   | vgg16+Adam+Exp+fcn32s       | 0.6333    | 0.0523   | 0.0351  | 0.4098  |
+   | vgg16+SGD+Cos+fcn32s        | 0.8049    | 0.5163   | 0.4172  | 0.6780  |
+   | vgg19+SGD+Cos+fcn32s        | 0.8180    | 0.5417   | 0.4490  | 0.6955  |
+   | resnet34+SGD+Cos+ fcn8      | 0.8903    | 0.7571   | 0.5503  | 0.8335  |
+   | resnet34+Adam+Cos+fcn8s     | 0.7295    | 0.3284   | 0.2353  | 0.5833  |
+   | vgg16+Adam+Cos+fcn16s       | 0.7242    | 0.3035   | 0.2297  | 0.5775  |
+   | vgg16 + Adam +Multi +fcn32s | 0.7130    | 0.2533   | 0.1887  | 0.5519  |
+   |                             |           |          |         |         |
+
+   
+
 3. 结果可视化
