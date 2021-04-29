@@ -63,24 +63,48 @@ FCN网络用于图像分割，模型搭建详见 `utils/model.py`
 ## 4.实验评估
 
 1. 评价指标： 计算了pixel accuracy\mean accuracy\ mean IU,\frequency weighted IU
+
+   Many standards are usually used in image semantic segmentation to measure the accuracy of the algorithm. These standards are usually variants of pixel accuracy and IoU. For ease of explanation, suppose there are k+1 classes (k classes and a background or empty class), $p_{ij}$ represents the number of pixels that belong to the i-th class but are predicted to be the j-th class. That is, $p_{ii}$ represents the number of correct predictions, while $p_{ij}$and$ p_{ji}$ are interpreted as false positives and false negatives respectively.
+
+- pixel accuracy(PA): This is the simplest measure, which is the percentage of pixels that are correctly labeled.
+
+ $P A=\frac{\sum_{i=0}^{k} p_{i i}}{\sum_{i=0}^{k} \sum_{j=0}^{k} p_{i j}}$
+
+- Mean Pixel Accuracy(MPA):It is a simple improvement of PA. It calculates the proportion of correctly classified pixels in each class, and then calculates the average of all classes.
+
+$M P A=\frac{1}{k+1} \sum_{i=0}^{k} \frac{p_{i i}}{\sum_{j=0}^{k} p_{i j}}$
+
+- Mean Intersection over Union(MIoU):It is a standard measure of semantic segmentation. It is to calculate the ratio of intersection and union of two sets. In the problem of semantic segmentation, these two sets are the ground truth and the predicted segmentation. This ratio can be transformed into the sum of the positive truth (intersection) compared to the  true positive, false negative, and false positive (union). Calculate IoU on each class, and then calculate the average.
+
+$M I o U=\frac{1}{k+1} \sum_{i=0}^{k} \frac{p_{i i}}{\sum_{j=0}^{k} p_{i j}+\sum_{j=0}^{k} p_{j i}-p_{i i}}$
+
+- Frequency Weighted Intersection over Union(FWIoU)：As an improvement of MIoU, this method sets the weight for each class according to the frequency of occurrence.
+
+$F W I o U=\frac{1}{\sum_{i=0}^{k} \sum_{j=0}^{k} p_{i j}} \sum_{i=0}^{k} \frac{p_{i i}}{\sum_{j=0}^{k} p_{i j}+\sum_{j=0}^{k} p_{j i}-p_{i i}}$
+
+
+
+
+
 2. 图像分割衡量标准，具体实现见`utils/eval.py`。  
    参考网站：https://blog.csdn.net/majinlei121/article/details/78965435  
             https://blog.csdn.net/u014593748/article/details/71698246  
 
-2. 下列分别为做的对比实验及其指标：
+3. 下列分别为做的对比实验及其指标：
 
-   | model                       | pixel-acc | mean-acc | mean IU | f.w. IU |
-   | --------------------------- | --------- | -------- | ------- | ------- |
-   | vgg16+Adam+Cos+fcn32s       | 0.7792    | 0.2880   | 0.2175  | 0.5615  |
-   | vgg16+SGD+Exp+fcn32s        |           |          |         |         |
-   | vgg16+SGD+Cos+fcn32s        | 0.8049    | 0.5163   | 0.4172  | 0.6780  |
-   | vgg19+SGD+Cos+fcn32s        | 0.8180    | 0.5417   | 0.4490  | 0.6955  |
-   | resnet34+SGD+Cos+ fcn8      | 0.8903    | 0.7571   | 0.5503  | 0.8335  |
-   | resnet34+Adam+Cos+fcn8s     | 0.7295    | 0.3284   | 0.2353  | 0.5833  |
-   | vgg16+Adam+Cos+fcn16s       | 0.7242    | 0.3035   | 0.2297  | 0.5775  |
-   | vgg16 + Adam +Multi +fcn32s | 0.7130    | 0.2533   | 0.1887  | 0.5519  |
-   |                             |           |          |         |         |
+| model                       | pixel-acc | mean-acc | mean IU | f.w. IU |
+| --------------------------- | --------- | -------- | ------- | ------- |
+| vgg16+Adam+Cos+fcn32s       | 0.7792    | 0.2880   | 0.2175  | 0.5615  |
+| vgg16+SGD+Exp+fcn32s        |           |          |         |         |
+| vgg16+SGD+Cos+fcn32s        | 0.8049    | 0.5163   | 0.4172  | 0.6780  |
+| vgg19+SGD+Cos+fcn32s        | 0.8180    | 0.5417   | 0.4490  | 0.6955  |
+| resnet34+SGD+Cos+ fcn8      | 0.8903    | 0.7571   | 0.5503  | 0.8335  |
+| resnet34+Adam+Cos+fcn8s     | 0.7295    | 0.3284   | 0.2353  | 0.5833  |
+| vgg16+Adam+Cos+fcn16s       | 0.7242    | 0.3035   | 0.2297  | 0.5775  |
+| vgg16 + Adam +Multi +fcn32s | 0.7130    | 0.2533   | 0.1887  | 0.5519  |
+|                             |           |          |         |         |
 
-   
 
-3. 结果可视化
+
+1. 结果可视化
+
