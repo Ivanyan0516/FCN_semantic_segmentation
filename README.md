@@ -73,6 +73,6 @@ FCN网络用于图像分割，模型搭建详见 `utils/model.py`
 | fcn8s (vgg16) + SGD + Cos     | 0.7945    | 0.4875   | 0.3872  | 0.6665  |
 | fcn8x (resnet34) + SGD + Cos  | 0.8496    | 0.6608   | 0.5537  | 0.7430  |
 
-1. 结果可视化
+4. 结果可视化
 
-![image-20210430183200176](C:\Users\Ivan\AppData\Roaming\Typora\typora-user-images\image-20210430183200176.png)
+   ![可视化图片](./src/1.png)
