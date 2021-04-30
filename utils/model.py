@@ -3,9 +3,10 @@ from torch import nn
 from torchvision import models
 import numpy as np
 
-pretrained_model=models.vgg16(pretrained=True) #用于 FCN32x FCN16x FCN8x
-pretrained_net = models.resnet34(pretrained=True) #用于 FCN8s
-
+pretrained_model=models.vgg16(pretrained=True) #用于 FCN32s FCN16s FCN8s
+pretrained_net = models.resnet34(pretrained=True) #用于 FCN8x
+#pretrained_res152 = models.resnet152(pretrained=True)
+#pretrained_vgg19 = models.vgg19(pretrained=True)
 def bilinear_kernel(in_channels, out_channels, kernel_size):
     '''
     return a bilinear filter tensor
