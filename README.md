@@ -42,8 +42,6 @@ FCN网络用于图像分割，模型搭建详见 `utils/model.py`
 
    设置不同的对比实验：
 
-   设置不同的对比实验：
-
    lr schedule： Cosine、Exponential、Multistep
 
    optimizer： SGD、Adam
